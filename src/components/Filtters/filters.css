@@ -1,0 +1,11 @@
+.filter-list{
+    list-style-type: none;
+}
+.filter-list-item{
+    text-align: start;
+    padding-left: 0px;
+    margin: 0px;
+}
+.filter-list-item:hover{
+    background-color: rgb(252, 252, 252);
+}
