@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ProductList from "./../components/products/ProductList";
-import { getProducts } from "../actions/products";
+import { getProducts } from "../actions/productsActions";
 import { useParams } from "react-router-dom";
 import Filters from "../components/Filtters/Filters";
 export default function Products(props) {

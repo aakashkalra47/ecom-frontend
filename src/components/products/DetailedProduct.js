@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./product.css";
 import { useParams, useHistory } from "react-router-dom";
-import { getProductById } from "../../actions/products";
-import { addItemToCart } from "../../actions/cart";
-import { addWishListItem, removeWishListItem } from "../../actions/wishlist";
+import { getProductById } from "../../actions/productsActions";
+import { addItemToCart } from "../../actions/cartActions";
+import {
+  addWishListItem,
+  removeWishListItem,
+} from "../../actions/wishlistActions";
 import { connect } from "react-redux";
 function DetailedProduct(props) {
   const params = useParams();
@@ -115,14 +118,14 @@ function DetailedProduct(props) {
         <div className="row mt-3">
           <div className="col-lg-3 icon px-3">
             {props.user &&
-            props.user.wishlist.find((e) => e._id === product._id) ? (
+            props.wishlist?.find((e) => e === product._id) ? (
               <i className="fas fa-heart" onClick={removeItemFromWishlist} />
             ) : (
               <i className="far fa-heart" onClick={addItemToWishList} />
             )}
           </div>
           <div className="col-lg-9 x-3">
-            {props.user?.cart?.find((e) => e.product._id === product._id) ? (
+            {props.cart.find((e) => e.productId === product._id) ? (
               <button
                 className="btn btn-primary w-100"
                 style={{ color: "white" }}
@@ -147,4 +150,8 @@ function DetailedProduct(props) {
     </div>
   );
 }
-export default connect((state) => ({ user: state.auth.user }))(DetailedProduct);
+export default connect((state) => ({
+  user: state.auth.user||[],
+  cart: state.cart||[],
+  wishlist: state.wishlist||[],
+}))(DetailedProduct);

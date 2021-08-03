@@ -9,6 +9,6 @@ function WishList(props) {
     </div>
   );
 }
-export default connect((state) => ({ wishlist: state.auth?.user?.wishlist }))(
+export default connect((state) => ({ wishlist: state.wishlist }))(
   WishList
 );

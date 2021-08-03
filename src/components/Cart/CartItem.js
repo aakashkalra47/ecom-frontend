@@ -1,9 +1,12 @@
 import React from "react";
-export default function CartItemsList(props) {
-  const { product, size } = props.item;
+import { connect } from "react-redux";
+import { removeItemFromCart, moveToWishList } from "../../actions/cartActions";
+function CartItem(props) {
+  const {size } = props.item;
+  const product=props.item.productId
   return (
     <div className="m-3 w-100 p-3">
-      <div> 
+      <div>
         <h4>{product.name}</h4>
       </div>
       <div className="row">
@@ -23,12 +26,29 @@ export default function CartItemsList(props) {
       </div>
       <div className="d-flex w-100 mt-2">
         <div className="w-50">
-          <button className="btn btn-primary w-100" style={{color:'white'}}>Move To Wishlist</button>
+          <button
+            className="btn btn-primary w-100"
+            style={{ color: "white" }}
+            onClick={() => {
+              props.dispatch(moveToWishList(product._id, size));
+            }}
+          >
+            Move To Wishlist
+          </button>
         </div>
         <div className="w-50">
-          <button className="btn btn-primary w-100"style={{color:'white'}}>Remove</button>
+          <button
+            className="btn btn-primary w-100"
+            style={{ color: "white" }}
+            onClick={() => {
+              props.dispatch(removeItemFromCart(product._id, size));
+            }}
+          >
+            Remove
+          </button>
         </div>
       </div>
     </div>
   );
 }
+export default connect()(CartItem);

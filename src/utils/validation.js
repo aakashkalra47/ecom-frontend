@@ -8,3 +8,7 @@ export const validateEmail = (email) => {
     ? undefined
     : "Email is not valid";
 };
+
+export const validateField=(field)=>{
+  return field&&field.length<4  ?"Length is too Short":"";
+}

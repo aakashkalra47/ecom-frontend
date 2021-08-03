@@ -2,7 +2,10 @@ import React from "react";
 import "./product.css";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import { addWishListItem, removeWishListItem } from "../../actions/wishlist";
+import {
+  addWishListItem,
+  removeWishListItem,
+} from "../../actions/wishlistActions";
 function Card(props) {
   const { name, price, _id } = props.data;
   console.log("1....props.user", props.user);
@@ -22,11 +25,11 @@ function Card(props) {
     }
   };
   const removeItemFromWishlist = async () => {
-      if (localStorage.getItem("authorization")) {
-        props.dispatch(removeWishListItem(_id));
-      } else {
-        history.push("/login");
-      }
+    if (localStorage.getItem("authorization")) {
+      props.dispatch(removeWishListItem(_id));
+    } else {
+      history.push("/login");
+    }
   };
   return (
     <div className="col-lg-4">
@@ -34,7 +37,7 @@ function Card(props) {
         className="icon-2 mt-4 mr-4"
         style={{ background: "white", marginLeft: "auto" }}
       >
-        {props.user && props.user.wishlist.find((e) => e._id === _id) ? (
+        {props.user && props.wishlist?.find((e) => e._id === _id) ? (
           <i className="fas fa-heart" onClick={removeItemFromWishlist} />
         ) : (
           <i className="far fa-heart" onClick={addItemToWishList} />
@@ -58,4 +61,8 @@ function Card(props) {
     </div>
   );
 }
-export default connect((state) => ({ user: state.auth.user }))(Card);
+export default connect((state) => ({
+  user: state.auth.user,
+  wishlist: state.wishlist,
+  cart: state.cart,
+}))(Card);

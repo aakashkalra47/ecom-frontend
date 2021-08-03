@@ -1,5 +1,7 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 function  CartDetails(props) {
+  const history=useHistory();
   return (
     <div className="container mt-5 mx-3">
       <table class="table">
@@ -23,7 +25,9 @@ function  CartDetails(props) {
           </tr>
         </tbody>
       </table>
-      <button className="btn btn-primary w-100" style={{color:'white'}}>Place Order</button>
+      <button className="btn btn-primary w-100" style={{color:'white'}} onClick={()=>{
+        history.push('/order')
+      }}>Place Order</button>
     </div>
   );
 }

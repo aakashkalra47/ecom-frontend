@@ -10,7 +10,7 @@ import {
 import { Field, Form } from "react-final-form";
 import { Link, useHistory } from "react-router-dom";
 import "../../styles/form.css";
-import { signup } from "../../actions/auth";
+import { signup } from "../../actions/authActions";
 import { connect } from "react-redux";
 import { validateEmail, validatePassword } from "../../utils/validation";
 const useStyles = makeStyles((theme) => ({
