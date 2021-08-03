@@ -10,7 +10,7 @@ export const getWishListItems = () => async (dispatch) => {
   try{
     console.log('1..axios config',axiosConfing);
     const response = await axios({
-      url: url + "/wishlist/add",
+      url: url + "/wishlist",
       method: "GET",
       ...axiosConfing
     });

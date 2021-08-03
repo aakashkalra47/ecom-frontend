@@ -117,8 +117,7 @@ function DetailedProduct(props) {
         </div>
         <div className="row mt-3">
           <div className="col-lg-3 icon px-3">
-            {props.user &&
-            props.wishlist?.find((e) => e === product._id) ? (
+            {props.wishlist?.find((e) => e === product._id) ? (
               <i className="fas fa-heart" onClick={removeItemFromWishlist} />
             ) : (
               <i className="far fa-heart" onClick={addItemToWishList} />
@@ -151,7 +150,7 @@ function DetailedProduct(props) {
   );
 }
 export default connect((state) => ({
-  user: state.auth.user||[],
-  cart: state.cart||[],
-  wishlist: state.wishlist||[],
+  user: state.auth.user || [],
+  cart: state.cart || [],
+  wishlist: state.wishlist || [],
 }))(DetailedProduct);

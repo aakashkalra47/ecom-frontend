@@ -5,8 +5,10 @@ const wishlistReducer=(state=[],action)=>{
         case 'ADD_WISHLIST_ITEM':
             return [...state,action.payload];
         case 'REMOVE_WISHLIST_ITEM':
-            const items=state.items.filter(e=>(e.productId!==action.payload.productId));
+            const items=state.filter(e=>(e!==action.payload));
             return items;
+        case 'MOVE_TO_WISHLIST':
+            return [...state,action.payload.productId]
         default:
             return state;
     }

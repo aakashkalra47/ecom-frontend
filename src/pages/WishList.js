@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import ProductList from "../components/products/ProductList";
+import {getProducts} from './../actions/productsActions';
 function WishList(props) {
-  console.log("1...props", props);
+  const [products,setProducts]=useState([]);
+  useEffect(()=>{
+    getProducts('ids',props.wishlist).then((res)=>{
+      setProducts(res.data.result);
+    });
+  },[props.wishlist]);
   return (
     <div className="container">
-      <ProductList products={props.wishlist || []} />
+      <ProductList products={products || []} />
     </div>
   );
 }

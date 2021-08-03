@@ -8,7 +8,7 @@ import {
 } from "../../actions/wishlistActions";
 function Card(props) {
   const { name, price, _id } = props.data;
-  console.log("1....props.user", props.user);
+  console.log("1....props.user", props);
   const history = useHistory();
   const openProductDetails = () => {
     history.push(`/product/${_id}`);
@@ -37,7 +37,7 @@ function Card(props) {
         className="icon-2 mt-4 mr-4"
         style={{ background: "white", marginLeft: "auto" }}
       >
-        {props.user && props.wishlist?.find((e) => e._id === _id) ? (
+        {props.wishlist?.find((e) => e === _id) ? (
           <i className="fas fa-heart" onClick={removeItemFromWishlist} />
         ) : (
           <i className="far fa-heart" onClick={addItemToWishList} />

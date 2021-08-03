@@ -2,8 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { removeItemFromCart, moveToWishList } from "../../actions/cartActions";
 function CartItem(props) {
-  const {size } = props.item;
-  const product=props.item.productId
+  const { size, product } = props;
   return (
     <div className="m-3 w-100 p-3">
       <div>
@@ -13,7 +12,7 @@ function CartItem(props) {
         <div className="w-50">
           <img
             src={
-              product.images[0] ||
+              (product.images && product.images[0]) ||
               "https://i.picsum.photos/id/670/200/200.jpg?hmac=r8TCUI8W_ykYaZnXA3SXAoh2eXVWEefFjjZ2VsLJBXg"
             }
             alt=".."

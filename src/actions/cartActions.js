@@ -20,7 +20,7 @@ export const getCartItems = (data, callback) => async (dispatch) => {
       });
     }
   } catch (e) {
-    console.log('1..e',e);
+    console.log("1..e", e);
     if (e.response.data.error && e.response.data.error.status === 401) {
       callback();
     }
@@ -41,7 +41,7 @@ export const addItemToCart = (data, callback) => async (dispatch) => {
       });
     }
   } catch (e) {
-    console.log('1..e',e);
+    console.log("1..e", e);
     if (e.response.data.error && e.response.data.error.status === 401) {
       callback();
     }
@@ -80,4 +80,10 @@ export const moveToWishList = (id, size) => async (dispatch) => {
       payload: response.data.result,
     });
   }
+};
+export const clearCart = () => {
+  return {
+    type: "CLEAR_CART",
+    payload: {},
+  };
 };

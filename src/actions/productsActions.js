@@ -1,10 +1,19 @@
 import axios from "axios";
 let url = "http://localhost:5000";
-export const getProducts = async (category) => {
+export const getProducts = async (type,data) => {
+  let query = {
+    category:null,
+    ids:null,
+  };
+  if (type === "category") {
+    query.category=data;
+  } else if(type==="ids") {
+    query.ids=data ;
+  }
   const products = await axios({
     method: "GET",
     url: `${url}/product`,
-    params: { category },
+    params: query,
   });
   return products;
 };

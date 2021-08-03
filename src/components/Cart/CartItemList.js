@@ -1,10 +1,12 @@
 import React from "react";
-import CartItem from './CartItem';
-export default function CartItemsList(props) {
-  const cartItems=props.cart;
-  return <div className="container mt-5">
-      {cartItems.map(e=>(
-          <CartItem key={e._id} item={e}/>
+import CartItem from "./CartItem";
+function CartItemsList(props) {
+  return (
+    <div className="container mt-5">
+      {props.cart?.map((e) => (
+        <CartItem key={e._id} item={e} size={e.size} product={e.product}/>
       ))}
-  </div>;
+    </div>
+  );
 }
+export default CartItemsList;

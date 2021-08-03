@@ -1,5 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
+import {setOrderAmount} from '../../actions/orderActions';
 function  CartDetails(props) {
   const history=useHistory();
   return (
@@ -26,9 +28,10 @@ function  CartDetails(props) {
         </tbody>
       </table>
       <button className="btn btn-primary w-100" style={{color:'white'}} onClick={()=>{
+        props.dispatch(setOrderAmount(props.amount + props.shipping));
         history.push('/order')
       }}>Place Order</button>
     </div>
   );
 }
-export default CartDetails;
+export default connect()(CartDetails);

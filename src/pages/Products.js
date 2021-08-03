@@ -7,7 +7,7 @@ export default function Products(props) {
   let { category } = useParams();
   const [productList, setProductList] = useState([]);
   useEffect(() => {
-    getProducts(category)
+    getProducts('category',category)
       .then((res) => {
         setProductList(res.data.result);
       })
