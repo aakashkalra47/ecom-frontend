@@ -6,9 +6,9 @@ export default function Home() {
     <div>
       <div className="container">
         <div className="row">
-          <div style={{ margin: "0px", padding: "0px" }} className="col-3">
+          {/* <div style={{ margin: "0px", padding: "0px" }} className="col-3">
             <Filters/>
-          </div>
+          </div> */}
           <div style={{ margin: "0px", padding: "0px" }} className="col-9">
             <ProductList />
           </div>

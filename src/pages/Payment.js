@@ -13,7 +13,7 @@ function Payment(props) {
     props.dispatch(placeOrder(orderDetails,(data)=>{
       props.dispatch(emptyCurrentOrder());
       props.dispatch(clearCart());
-      history.replace('/orders');
+      history.replace('/user/orders');
     }));
   }
   return (

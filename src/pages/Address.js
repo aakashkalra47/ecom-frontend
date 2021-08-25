@@ -1,5 +1,5 @@
 import React from "react";
-import Addresses from "../components";
+import Addresses from "../components/Address/AddressList";
 export default function Products(props) {
   return (
     <div>

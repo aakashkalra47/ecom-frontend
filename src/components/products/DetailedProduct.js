@@ -13,13 +13,9 @@ function DetailedProduct(props) {
   const [product, setProduct] = useState({});
   const history = useHistory();
   useEffect(() => {
-    getProductById(params.id)
-      .then((res) => {
-        setProduct(res.data.result);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    getProductById(params.id).then((res) => {
+      setProduct(res.data.result);
+    });
   }, []);
   const addItemToWishList = async () => {
     if (localStorage.getItem("authorization")) {
@@ -86,7 +82,7 @@ function DetailedProduct(props) {
           <h3>₹{product.price}</h3>
         </div>
         <div className="pd-3">
-          <h4>Select Size</h4>
+          <h5>Select Size</h5>
           <div className="row">
             {sizes?.map((e) => {
               const size = product.sizes?.find((size) => size.name === e);
@@ -97,7 +93,6 @@ function DetailedProduct(props) {
                     available ? "available" : "not-available"
                   } ${selectedSize === e && "selected"}`}
                   onClick={() => {
-                    console.log("1...availbale", available);
                     if (available) {
                       setSelectedSize(e);
                       SetError("");

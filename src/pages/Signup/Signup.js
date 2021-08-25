@@ -38,7 +38,6 @@ function SignUp(props) {
         })
       );
     } catch (e) {
-      console.log("1..e", e);
       alert(e);
     }
   };

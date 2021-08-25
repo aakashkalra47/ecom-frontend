@@ -16,9 +16,9 @@ import Cart from "../src/pages/Cart";
 import AddressForm from "./components/Address/AdressForm";
 import AddressList from "./components/Address/AddressList";
 import Payment from "./pages/Payment";
-import {getWishListItems} from "./actions/wishlistActions";
-import {getCartItems} from './actions/cartActions';
-// import { connect } from "react-redux";
+import { getWishListItems } from "./actions/wishlistActions";
+import { getCartItems } from "./actions/cartActions";
+import OrderList from "./components/Order/orderList";
 function App(props) {
   useEffect(() => {
     if (localStorage.getItem("authorization")) {
@@ -26,11 +26,11 @@ function App(props) {
       store.dispatch(getWishListItems());
       store.dispatch(getCartItems());
     }
-  },[]);
+  }, []);
   return (
     <Provider store={store}>
       <Router>
-        <div>
+        <div style={{ fontFamily: "Arial,sans-serif" }}>
           <Navbar />
           <Switch>
             <Route exact path="/" component={Home} />
@@ -39,6 +39,7 @@ function App(props) {
             <Route exact path="/product/:id" component={ProductDetail} />
             <Route exact path="/user/wishlist" component={Wishlist} />
             <Route exact path="/user/cart" component={Cart} />
+            <Route exact path="/user/orders" component={OrderList} />
             <Route exact path="/order" component={AddressList} />
             <Route exact path="/address/add" component={AddressForm} />
             <Route exact path="/payment" component={Payment} />
