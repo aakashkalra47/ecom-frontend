@@ -6,15 +6,17 @@ export default function Login() {
   return (
     <div className="nav-main-div">
       <div className="nav-flex">
-        <div className="nav-item">
+        <div className="nav-item  text-center">
           <Link to="/" className="nav-item-text">
             Home
           </Link>
         </div>
         <div className="nav-item nav-item-pos">
-          <Link to="#" className="nav-item-text">
-            Men
-          </Link>
+          <div className="text-center">
+            <Link to="#" className="nav-item-text">
+              Men
+            </Link>
+          </div>
           <div className="nav-dropdown">
             <Link to="/men-tshirts">T-shirt</Link>
             <Link to="/men-shirts" className="nav-item-text">
@@ -26,11 +28,15 @@ export default function Login() {
           </div>
         </div>
         <div className="nav-item nav-item-pos">
-          <Link to="#" className="nav-item-text">
-            Women
-          </Link>
+          <div className="text-center">
+            <Link to="#" className="nav-item-text  text-center">
+              Women
+            </Link>
+          </div>
           <div className="nav-dropdown">
-            <Link to="/women-tshirts">T-shirt</Link>
+            <Link to="/women-tshirts" className="nav-item-text">
+              T-shirt
+            </Link>
             <Link to="/women-full-sleeve-tshirts" className="nav-item-text">
               Full Sleeve T-Shirts
             </Link>
@@ -39,7 +45,7 @@ export default function Login() {
             </Link>
           </div>
         </div>
-        <div className="nav-item nav-item-pos">
+        {/* <div className="nav-item nav-item-pos">
           <Link to="#" className="nav-item-text">
             Trending
           </Link>
@@ -52,7 +58,7 @@ export default function Login() {
               Jeans
             </Link>
           </div>
-        </div>
+        </div> */}
         <Search />
         <div style={{ flex: 1 }}></div>
         <div
@@ -80,7 +86,7 @@ export default function Login() {
           </Link>
           <div className="nav-dropdown">
             <Link to="#">Profile</Link>
-            <Link to="#" className="nav-item-text">
+            <Link to="/user/orders" className="nav-item-text">
               My Orders
             </Link>
           </div>

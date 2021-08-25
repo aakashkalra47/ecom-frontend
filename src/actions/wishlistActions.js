@@ -8,7 +8,6 @@ const axiosConfing={
 
 export const getWishListItems = () => async (dispatch) => {
   try{
-    console.log('1..axios config',axiosConfing);
     const response = await axios({
       url: url + "/wishlist",
       method: "GET",
@@ -22,7 +21,6 @@ export const getWishListItems = () => async (dispatch) => {
     }
   }
   catch(e){
-    console.log('1...e',e)
     // if(e.response.data.error.status===401)
     //   callback();
   }
@@ -30,7 +28,6 @@ export const getWishListItems = () => async (dispatch) => {
 
 export const addWishListItem = (productId,callback) => async (dispatch) => {
   try{
-    console.log('1..axios config',axiosConfing);
     const response = await axios({
       url: url + "/wishlist/add",
       method: "PUT",
@@ -47,7 +44,6 @@ export const addWishListItem = (productId,callback) => async (dispatch) => {
     }
   }
   catch(e){
-    console.log('1...e',e)
     if(e.response.data.error.status===401)
       callback();
   }

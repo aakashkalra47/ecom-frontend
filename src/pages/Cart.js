@@ -7,19 +7,14 @@ function Cart(props) {
   const [cartItems, setCartItems] = useState([]);
   useEffect(() => {
     let ids = props.cart.map((e) => e.productId);
-    console.log("1..items", ids);
     getProducts("ids", ids).then((res) => {
-      console.log("1..response", res.data.result);
       let products = res.data.result.map((e) => {
         let item = props.cart.find((e2) => e2.productId === e._id);
-        console.log("1..items", item, cartItems, e._id);
         return { product: e, size: item?.size };
       });
-      console.log("1..products", products);
       setCartItems(products);
     });
   }, [props.cart]);
-  console.log("1...cart", cartItems);
   const amount =
     cartItems.length > 0
       ? cartItems.reduce((accumulator, e) => accumulator + e.product.price, 0)

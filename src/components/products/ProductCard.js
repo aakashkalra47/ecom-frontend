@@ -8,7 +8,6 @@ import {
 } from "../../actions/wishlistActions";
 function Card(props) {
   const { name, price, _id } = props.data;
-  console.log("1....props.user", props);
   const history = useHistory();
   const openProductDetails = () => {
     history.push(`/product/${_id}`);
@@ -55,7 +54,7 @@ function Card(props) {
             alt="..."
           />
           <h6 className="card-text">{name} </h6>
-          <h5 className="card-title">₹{price}</h5>
+          <h5 className="card-title"><b>₹</b> {price}</h5>
         </div>
       </div>
     </div>

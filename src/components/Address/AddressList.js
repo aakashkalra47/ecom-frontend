@@ -6,7 +6,6 @@ import { getAddresses } from "../../actions/addressActions";
 import {setOrderAddress} from "../../actions/orderActions";
 function AddressList(props) {
   const { addresses } = props;
-  console.log("1..adress", addresses);
   useEffect(()=>{
     props.dispatch(getAddresses());
   },[])
@@ -16,7 +15,7 @@ function AddressList(props) {
         <div>
           {addresses &&
             addresses.map((e) => (
-              <div>
+              <div style={{border:'1px solid #d5ded7',borderRadius:'5px',padding:'10px'}}>
                 <AddressItem key={e._id} data={e} />
                 <Link to="/payment"  className="btn btn-primary" style={{ color: "white" }} 
                   onClick={()=>{

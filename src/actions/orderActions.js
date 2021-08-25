@@ -17,7 +17,6 @@ export const placeOrder = (data, callback) => async (dispatch) => {
       callback(response.data.result);
     }
   } catch (e) {
-    console.log("1..e", e);
     if (e.response.data.error && e.response.data.error.status === 401) {
       // callback();
     }
@@ -41,3 +40,21 @@ export const emptyCurrentOrder = () => {
     payload: {},
   };
 };
+export const fetchOrders=()=>async (dispatch)=>{
+  try{
+    const response = await axios({
+      url: url + "/order/",
+      method: "GET",
+      ...axiosConfing
+    });
+    if (response.data.result) {
+      dispatch({
+        type: "SET_ALL_ORDERS",
+        payload: response.data.result,
+      });
+    }
+  }
+  catch(e){
+    throw e;
+  }
+}

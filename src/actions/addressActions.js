@@ -7,7 +7,6 @@ const axiosConfing={
 }
 export const getAddresses = () => async (dispatch) => {
   try{
-    console.log('1..axios config',axiosConfing);
     const response = await axios({
       url: url + "/address",
       method: "GET",
@@ -21,7 +20,6 @@ export const getAddresses = () => async (dispatch) => {
     }
   }
   catch(e){
-    console.log('1...e',e.response.data)
     if(e.response.data.error&&e.response.data.error.status===401){
       // callback();
     }
@@ -29,7 +27,6 @@ export const getAddresses = () => async (dispatch) => {
 };
 export const addAddress = (data,callback) => async (dispatch) => {
   try{
-    console.log('1..axios config',axiosConfing);
     const response = await axios({
       url: url + "/address",
       method: "POST",
@@ -45,7 +42,6 @@ export const addAddress = (data,callback) => async (dispatch) => {
     }
   }
   catch(e){
-    console.log('1...e',e.response.data)
     if(e.response.data.error&&e.response.data.error.status===401)
       callback();
   }

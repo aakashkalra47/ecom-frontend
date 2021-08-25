@@ -20,7 +20,6 @@ export const getCartItems = (data, callback) => async (dispatch) => {
       });
     }
   } catch (e) {
-    console.log("1..e", e);
     if (e.response.data.error && e.response.data.error.status === 401) {
       callback();
     }
@@ -41,7 +40,6 @@ export const addItemToCart = (data, callback) => async (dispatch) => {
       });
     }
   } catch (e) {
-    console.log("1..e", e);
     if (e.response.data.error && e.response.data.error.status === 401) {
       callback();
     }

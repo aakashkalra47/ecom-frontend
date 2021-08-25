@@ -7,7 +7,6 @@ export const login = (data, callback) => async (dispatch) => {
     data,
   });
   if (response.data) {
-    console.log("1..login", callback);
     localStorage.setItem("authorization", response.data.result.token);
     callback();
     dispatch({
