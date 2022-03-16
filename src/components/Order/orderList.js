@@ -15,10 +15,10 @@ const OrderList = (props) => {
       {orders?.map((e) => (
         <div
           style={{
-            padding: "15px",
+            padding: "1rem",
             width: "50%",
             border: "1px solid #d5ded7",
-            borderRadius: "5px",
+            borderRadius: "0.4rem",
           }}
         >
           <OrderDetail order={e} key={e._id} />

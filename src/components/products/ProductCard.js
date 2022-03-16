@@ -1,5 +1,5 @@
 import React from "react";
-import "./product.css";
+import "../../styles/index.css";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import {
@@ -7,7 +7,7 @@ import {
   removeWishListItem,
 } from "../../actions/wishlistActions";
 function Card(props) {
-  const { name, price, _id } = props.data;
+  const { name, price, _id,images } = props.data;
   const history = useHistory();
   const openProductDetails = () => {
     history.push(`/product/${_id}`);
@@ -31,30 +31,34 @@ function Card(props) {
     }
   };
   return (
-    <div className="col-lg-4">
-      <div
-        className="icon-2 mt-4 mr-4"
-        style={{ background: "white", marginLeft: "auto" }}
-      >
-        {props.wishlist?.find((e) => e === _id) ? (
-          <i className="fas fa-heart" onClick={removeItemFromWishlist} />
-        ) : (
-          <i className="far fa-heart" onClick={addItemToWishList} />
-        )}
-      </div>
-      <div
-        className="card"
-        style={{ width: "18rem", border: "none" }}
-        onClick={openProductDetails}
-      >
-        <div className="card-body">
+    <div className="col-lg-3 p-1 my-0">
+      <div className="product__card">
+        <div className="card-body pos-relative" >
+          <div
+            className="icon-2"
+          >
+            {props.wishlist?.find((e) => e === _id) ? (
+              <i
+                className="fas fa-heart text-parimary"
+                onClick={removeItemFromWishlist}
+              />
+            ) : (
+              <i
+                className="far fa-heart text-primary"
+                onClick={addItemToWishList}
+              />
+            )}
+          </div>
           <img
-            src="https://i.picsum.photos/id/670/200/200.jpg?hmac=r8TCUI8W_ykYaZnXA3SXAoh2eXVWEefFjjZ2VsLJBXg"
+            onClick={openProductDetails}
+            src={images[0]||""}
             className="card-img-top"
             alt="..."
           />
-          <h6 className="card-text">{name} </h6>
-          <h5 className="card-title"><b>₹</b> {price}</h5>
+          <h6 className="card-text my-3">{name} </h6>
+          <h6>
+            <b>₹</b> {price}
+          </h6>
         </div>
       </div>
     </div>

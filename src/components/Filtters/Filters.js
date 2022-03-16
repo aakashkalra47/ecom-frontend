@@ -1,5 +1,5 @@
 import React from "react";
-import './filters.css';
+import '../../styles/index.css';
 export default function Filters(props) {
     const [sizes,setSizes]=React.useState(['S','M','L','XL']);
     const [categories,setCategories]=React.useState(['1','2','3']);

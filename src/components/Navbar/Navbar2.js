@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./navbar.css";
+import "../../styles/index.css";
 import Search from "./Search";
 export default function Login() {
   return (

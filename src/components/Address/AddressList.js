@@ -15,7 +15,7 @@ function AddressList(props) {
         <div>
           {addresses &&
             addresses.map((e) => (
-              <div style={{border:'1px solid #d5ded7',borderRadius:'5px',padding:'10px'}}>
+              <div style={{border:'1px solid #d5ded7',borderRadius:'0.4rem',padding:'0.625rem'}}>
                 <AddressItem key={e._id} data={e} />
                 <Link to="/payment"  className="btn btn-primary" style={{ color: "white" }} 
                   onClick={()=>{

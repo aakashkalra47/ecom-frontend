@@ -19,9 +19,9 @@ export const getWishListItems = () => async (dispatch) => {
         payload: response.data.result,
       });
     }
-  }
+  } 
   catch(e){
-    // if(e.response.data.error.status===401)
+    // if(e.response.data.status===401)
     //   callback();
   }
 };
@@ -44,7 +44,7 @@ export const addWishListItem = (productId,callback) => async (dispatch) => {
     }
   }
   catch(e){
-    if(e.response.data.error.status===401)
+    if(e.response.data.status===401)
       callback();
   }
 };

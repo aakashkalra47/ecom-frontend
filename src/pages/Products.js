@@ -18,7 +18,7 @@ export default function Products(props) {
           {/* <div style={{ margin: "0px", padding: "0px" }} className="col-3">
           <Filters/>
         </div> */}
-          <div style={{ margin: "0px", padding: "0px" }} className="col-9">
+          <div style={{ margin: "0px", padding: "0px" }} className="col-12">
             <ProductList products={productList} />
           </div>
         </div>

@@ -1,6 +1,20 @@
-$accordion-button-active-bg:white;
-$accordion-button-active-color:black;
-$accordion-button-focus-border-color:none;
-$accordion-button-focus-box-shadow:none;
-$primary:#75bfae;
-@import '../../../node_modules/bootstrap';
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+
+@import "_variables.module.scss";
+a:hover {
+  color: white !important;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+$accordion-button-active-bg: white;
+$accordion-button-active-color: black;
+$accordion-button-focus-border-color: none;
+$accordion-button-focus-box-shadow: none;
+@import "navbar.scss";
+@import "filters.scss";
+@import "product.scss";
+@import "form.scss";
+@import "utilities.scss";
+@import "image_modal.scss"

@@ -19,7 +19,7 @@ import Payment from "./pages/Payment";
 import { getWishListItems } from "./actions/wishlistActions";
 import { getCartItems } from "./actions/cartActions";
 import OrderList from "./components/Order/orderList";
-function App(props) {
+function App() {
   useEffect(() => {
     if (localStorage.getItem("authorization")) {
       store.dispatch(getUser());

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./product.css";
+import "../../styles/index.css";
 import { useParams, useHistory } from "react-router-dom";
 import { getProductById } from "../../actions/productsActions";
 import { addItemToCart } from "../../actions/cartActions";
@@ -16,6 +16,18 @@ function DetailedProduct(props) {
     getProductById(params.id).then((res) => {
       setProduct(res.data.result);
     });
+    var modal = document.getElementById("myModal");
+    var img = document.getElementById("myImg");
+    var modalImg = document.getElementById("img01");
+    // console.log('img',document.getElementById("myModal"));
+    img.onclick = function () {
+      modal.style.display = "block";
+      modalImg.src = this.src;
+    };
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function () {
+      modal.style.display = "none";
+    };
   }, []);
   const addItemToWishList = async () => {
     if (localStorage.getItem("authorization")) {
@@ -62,18 +74,19 @@ function DetailedProduct(props) {
   const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
   return (
     <div className="row container mt-3" style={{ margin: "auto" }}>
-      <div className="col-lg-1">
+      {/* <div className="col-lg-1">
         {product.images?.map((e) => (
           <div className="row">
-            <img src={e.url} alt="" style={{ flex: 1 }} />
+            <img src={e} alt="" style={{ flex: 1 }} />
           </div>
         ))}
-      </div>
+      </div> */}
       <div className="col-lg-5 row">
         <img
-          src="https://i.picsum.photos/id/670/200/200.jpg?hmac=r8TCUI8W_ykYaZnXA3SXAoh2eXVWEefFjjZ2VsLJBXg"
+          src={(product.images && product.images[0]) || ""}
           alt=""
           style={{ flex: 1 }}
+          id="myImg"
         />
       </div>
       <div className="col-lg-6">
@@ -111,11 +124,24 @@ function DetailedProduct(props) {
           </div>
         </div>
         <div className="row mt-3">
-          <div className="col-lg-3 icon px-3">
+          <div
+            className="col-lg-3 icon px-3"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             {props.wishlist?.find((e) => e === product._id) ? (
-              <i className="fas fa-heart" onClick={removeItemFromWishlist} />
+              <i
+                className="fas fa-heart text-primary"
+                onClick={removeItemFromWishlist}
+              />
             ) : (
-              <i className="far fa-heart" onClick={addItemToWishList} />
+              <i
+                className="far fa-heart  text-primary"
+                onClick={addItemToWishList}
+              />
             )}
           </div>
           <div className="col-lg-9 x-3">
@@ -139,7 +165,14 @@ function DetailedProduct(props) {
               </button>
             )}
           </div>
+          <div className="my-3 px-1">
+            <p className="text-muted">{product.description}</p>
+          </div>
         </div>
+      </div>
+      <div id="myModal" className="modal">
+        <span className="close">&times;</span>
+        <img className="modal-content" id="img01" />
       </div>
     </div>
   );
