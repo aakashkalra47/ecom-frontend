@@ -1,5 +1,5 @@
 import axios from "axios";
-let url = "http://localhost:5000";
+let url = process.env.REACT_APP_API;
 export const getProducts = async (type,data) => {
   let query = {
     category:null,

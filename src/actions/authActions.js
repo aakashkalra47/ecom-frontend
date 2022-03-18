@@ -1,5 +1,5 @@
 import axios from "axios";
-let url = "http://localhost:5000";
+let url = process.env.REACT_APP_API;
 export const login = (data, callback) => async (dispatch) => {
   const response = await axios({
     url: url + "/auth/login",
