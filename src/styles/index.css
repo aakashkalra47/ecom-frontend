@@ -4798,6 +4798,26 @@ a:hover {
 .selected {
   border: 5px solid #d3d2d2; }
 
+.image-container {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  overflow-y: scroll;
+  overflow-x: hidden; }
+  .image-container::-webkit-scrollbar {
+    display: none; }
+
+.image-container-item {
+  flex: 0;
+  margin: 5px 0px;
+  width: 100%;
+  height: 40%; }
+
+.image-container-image {
+  width: 100%;
+  height: 100%;
+  cursor: pointer; }
+
 .login-form-body {
   display: flex;
   align-items: center;
@@ -4810,10 +4830,10 @@ a:hover {
   display: flex;
   justify-content: center;
   padding: 40px;
-  border-radius: 5px;
-  box-shadow: 2px;
+  border-radius: 0px;
   border: 1px solid #eb2f64;
-  display: flex; }
+  display: flex;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2); }
 
 .input-field {
   margin: 20px;
@@ -4827,9 +4847,8 @@ a:hover {
 #myImg {
   cursor: pointer;
   transition: 0.3s; }
-
-#myImg:hover {
-  opacity: 0.9; }
+  #myImg:hover {
+    opacity: 0.9; }
 
 .modal {
   display: none;

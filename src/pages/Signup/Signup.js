@@ -9,11 +9,10 @@ import {
 } from "@material-ui/core";
 import { Field, Form } from "react-final-form";
 import { Link, useHistory } from "react-router-dom";
-import "../../styles/index.css";
 import { signup } from "../../actions/authActions";
 import { connect } from "react-redux";
 import { validateEmail, validatePassword } from "../../utils/validation";
-import variables from '../../styles/sass/_variables.module.scss';
+import variables from "../../styles/sass/_variables.module.scss";
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -60,8 +59,11 @@ function SignUp(props) {
               autoComplete="off"
               onSubmit={handleSubmit}
             >
-              <h4 style={{ textAlign: "center", flex: 1, width: "100%" }} className="text-primary">
-                Ecom Sign Up
+              <h4
+                style={{ textAlign: "center", flex: 1, width: "100%" }}
+                className="text-primary"
+              >
+                Fashioncart Sign Up
               </h4>
               <Field name="email" validate={validateEmail}>
                 {({ input, meta }) => (
@@ -135,12 +137,21 @@ function SignUp(props) {
                   </div>
                 )}
               </Field>
-              <Button variant="contained" style={{backgroundColor:variables.primary,color:'white'}} type="submit">
+              <Button
+                variant="contained"
+                style={{ backgroundColor: variables.primary, color: "white" }}
+                type="submit"
+                className="w-100"
+              >
                 Sign Up
               </Button>
               <div>
                 <Typography>Already have an Account?</Typography>
-                <MuiLink to="/login" component={Link} className="text-primary link">
+                <MuiLink
+                  to="/login"
+                  component={Link}
+                  className="text-primary link"
+                >
                   Login
                 </MuiLink>
               </div>

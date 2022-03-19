@@ -1,16 +1,16 @@
 import axios from "axios";
 let url = process.env.REACT_APP_API;
-const axiosConfing = {
+const axiosConfing = ()=>({
   headers: {
     authorization: localStorage.getItem("authorization"),
   },
-};
+});
 export const getCartItems = (data, callback) => async (dispatch) => {
   try {
     const response = await axios({
       url: url + `/cart/`,
       method: "GET",
-      ...axiosConfing,
+      ...axiosConfing(),
       data,
     });
     if (response.data) {
@@ -30,7 +30,7 @@ export const addItemToCart = (data, callback) => async (dispatch) => {
     const response = await axios({
       url: url + `/cart/add/`,
       method: "PUT",
-      ...axiosConfing,
+      ...axiosConfing(),
       data,
     });
     if (response.data) {
@@ -53,7 +53,7 @@ export const removeItemFromCart = (id, size) => async (dispatch) => {
       size,
       productId: id,
     },
-    ...axiosConfing,
+    ...axiosConfing(),
   });
   if (response.data) {
     dispatch({
@@ -70,7 +70,7 @@ export const moveToWishList = (id, size) => async (dispatch) => {
       size,
       productId: id,
     },
-    ...axiosConfing,
+    ...axiosConfing(),
   });
   if (response.data) {
     dispatch({

@@ -1,0 +1,26 @@
+.footer {
+  background-color: black;
+  color: $primary;
+  width: 100%;
+  bottom: 0;
+  height: 10rem;
+  margin-top: 5rem;
+  text-align: center;
+}
+.footer-link {
+  text-decoration: none;
+  cursor: pointer;
+  &:not(:last-child) {
+    margin-right: 1rem;
+  }
+}
+.footer-heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+}
+.link-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}

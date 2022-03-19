@@ -1,16 +1,16 @@
 import axios from "axios";
-let url = "http://localhost:5000";
-const axiosConfing = {
+let url = process.env.REACT_APP_API;
+const axiosConfing = ()=>({
   headers: {
     authorization: localStorage.getItem("authorization"),
   },
-};
+});
 export const placeOrder = (data, callback) => async (dispatch) => {
   try {
     const response = await axios({
       url: url + `/order/`,
       method: "POST",
-      ...axiosConfing,
+      ...axiosConfing(),
       data,
     });
     if (response.data) {
@@ -45,7 +45,7 @@ export const fetchOrders=()=>async (dispatch)=>{
     const response = await axios({
       url: url + "/order/",
       method: "GET",
-      ...axiosConfing
+      ...axiosConfing()
     });
     if (response.data.result) {
       dispatch({

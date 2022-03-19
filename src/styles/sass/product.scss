@@ -7,10 +7,9 @@
   /* width: 20%; */
   display: flex;
   flex-direction: column;
-  &__card{
+  &__card {
     width: 100%;
     background-color: #efefef;
-
   }
 }
 .btn-bg {
@@ -27,41 +26,56 @@
   /* padding: 0px 10px; */
   height: 40px;
 }
-.not-available{
-    text-decoration: line-through;
+.not-available {
+  text-decoration: line-through;
 }
-.icon{
-    color:$primary;
-    text-align: center;
-    font-size: larger;
-    border: 1px solid $primary;
-    border-radius: 5px;
-    
+.icon {
+  color: $primary;
+  text-align: center;
+  font-size: larger;
+  border: 1px solid $primary;
+  border-radius: 5px;
 }
-.icon-2{
-    color:$primary;
-    background-color: white;
-    text-align: center;
-    font-size: larger;
-    border-radius: 20px;
-    height: 40px;
-    width: 40px;
-    padding: 7px;
-    top: 1rem;
-    left: 1rem;
-    z-index: 1;
-    display: block;
-    position: absolute;
+.icon-2 {
+  color: $primary;
+  background-color: white;
+  text-align: center;
+  font-size: larger;
+  border-radius: 20px;
+  height: 40px;
+  width: 40px;
+  padding: 7px;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1;
+  display: block;
+  position: absolute;
 }
-.selected{
+.selected {
   border: 5px solid rgb(211, 210, 210);
 }
-// .product-list {
-//   /* width: 80%; */
-//   /* padding: 0px; */
-// }
-// .product-image {
-//   height: 100%;
-//   width: 100%;
-//   flex: 3;
-// }
+
+// Multiple image
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  &::-webkit-scrollbar{
+    display: none;
+    // width: 5px;
+  }
+}
+.image-container-item {
+  flex: 0;
+  margin: 5px 0px;
+  width: 100%;
+  height: 40%;
+}
+.image-container-image {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}

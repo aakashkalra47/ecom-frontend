@@ -1,17 +1,17 @@
 import axios from "axios";
 let url = process.env.REACT_APP_API;
-const axiosConfing={
+const axiosConfing=() => ({
   headers:{
     authorization:localStorage.getItem('authorization')
   }
-}
+})
 
 export const getWishListItems = () => async (dispatch) => {
   try{
     const response = await axios({
       url: url + "/wishlist",
       method: "GET",
-      ...axiosConfing
+      ...axiosConfing()
     });
     if (response.data.result) {
       dispatch({
@@ -34,7 +34,7 @@ export const addWishListItem = (productId,callback) => async (dispatch) => {
       data:{
         productId
       },
-      ...axiosConfing
+      ...axiosConfing()
     });
     if (response.data.result) {
       dispatch({
@@ -55,7 +55,7 @@ export const removeWishListItem = (productId) => async (dispatch) => {
     data:{
       productId
     },
-    ...axiosConfing
+    ...axiosConfing()
   });
   if (response.data) {
     dispatch({

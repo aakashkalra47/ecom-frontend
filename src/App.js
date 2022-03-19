@@ -19,6 +19,7 @@ import Payment from "./pages/Payment";
 import { getWishListItems } from "./actions/wishlistActions";
 import { getCartItems } from "./actions/cartActions";
 import OrderList from "./components/Order/orderList";
+import Footer from "./components/Footer";
 function App() {
   useEffect(() => {
     if (localStorage.getItem("authorization")) {
@@ -30,7 +31,7 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <div style={{ fontFamily: "Arial,sans-serif" }}>
+        <div style={{ fontFamily: "Arial,sans-serif",position:'relative',minHeight:'100vh',display:'flex',flexDirection:'column',justifyContent:'space-between' }}>
           <Navbar />
           <Switch>
             <Route exact path="/" component={Home} />
@@ -45,6 +46,7 @@ function App() {
             <Route exact path="/payment" component={Payment} />
             <Route exact path="/:category" component={Products} />
           </Switch>
+          <Footer/>
         </div>
       </Router>
     </Provider>

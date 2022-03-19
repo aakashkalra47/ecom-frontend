@@ -1,5 +1,4 @@
 import React from "react";
-import "../../styles/index.css";
 function SearchBar(props) {
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {

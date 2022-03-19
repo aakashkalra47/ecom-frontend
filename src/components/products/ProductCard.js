@@ -1,5 +1,4 @@
 import React from "react";
-import "../../styles/index.css";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import {

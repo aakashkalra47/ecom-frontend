@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "../../styles/index.css";
 import { useParams, useHistory } from "react-router-dom";
 import { getProductById } from "../../actions/productsActions";
 import { addItemToCart } from "../../actions/cartActions";
+import _ from "lodash";
+import Spinner from "../Spinner";
 import {
   addWishListItem,
   removeWishListItem,
@@ -15,19 +16,19 @@ function DetailedProduct(props) {
   useEffect(() => {
     getProductById(params.id).then((res) => {
       setProduct(res.data.result);
+      var modal = document.getElementById("myModal");
+      var img = document.getElementById("myImg");
+      var modalImg = document.getElementById("img01");
+      // console.log('img',document.getElementById("myModal"));
+      img.onclick = function () {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+      };
+      var span = document.getElementsByClassName("close")[0];
+      span.onclick = function () {
+        modal.style.display = "none";
+      };
     });
-    var modal = document.getElementById("myModal");
-    var img = document.getElementById("myImg");
-    var modalImg = document.getElementById("img01");
-    // console.log('img',document.getElementById("myModal"));
-    img.onclick = function () {
-      modal.style.display = "block";
-      modalImg.src = this.src;
-    };
-    var span = document.getElementsByClassName("close")[0];
-    span.onclick = function () {
-      modal.style.display = "none";
-    };
   }, []);
   const addItemToWishList = async () => {
     if (localStorage.getItem("authorization")) {
@@ -72,15 +73,45 @@ function DetailedProduct(props) {
   };
   // const checkAvailablitySizes=()
   const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
-  return (
+  return _.isEmpty(product) ? (
+    <Spinner />
+  ) : (
     <div className="row container mt-3" style={{ margin: "auto" }}>
-      {/* <div className="col-lg-1">
-        {product.images?.map((e) => (
-          <div className="row">
-            <img src={e} alt="" style={{ flex: 1 }} />
-          </div>
-        ))}
-      </div> */}
+      <div className="col-lg-1">
+        <div className="image-container">
+          {product.images?.map((e) => (
+            <div className="image-container-item">
+              <img src={e} alt="" className="image-container-image" />
+            </div>
+          ))}
+
+          {product.images?.map((e) => (
+            <div className="image-container-item">
+              <img src={e} alt="" className="image-container-image" />
+            </div>
+          ))}
+          {product.images?.map((e) => (
+            <div className="image-container-item">
+              <img src={e} alt="" className="image-container-image" />
+            </div>
+          ))}
+          {product.images?.map((e) => (
+            <div className="image-container-item">
+              <img src={e} alt="" className="image-container-image" />
+            </div>
+          ))}
+          {product.images?.map((e) => (
+            <div className="image-container-item">
+              <img src={e} alt="" className="image-container-image" />
+            </div>
+          ))}
+          {product.images?.map((e) => (
+            <div className="image-container-item">
+              <img src={e} alt="" className="image-container-image" />
+            </div>
+          ))}
+        </div>
+      </div>
       <div className="col-lg-5 row">
         <img
           src={(product.images && product.images[0]) || ""}
@@ -91,7 +122,7 @@ function DetailedProduct(props) {
       </div>
       <div className="col-lg-6">
         <div>
-          <h4>{product.name}</h4>
+          <h3>{product.name}</h3>
           <h3>₹{product.price}</h3>
         </div>
         <div className="pd-3">
@@ -125,7 +156,7 @@ function DetailedProduct(props) {
         </div>
         <div className="row mt-3">
           <div
-            className="col-lg-3 icon px-3"
+            className="col-lg-2 icon px-3"
             style={{
               display: "flex",
               alignItems: "center",
@@ -144,7 +175,7 @@ function DetailedProduct(props) {
               />
             )}
           </div>
-          <div className="col-lg-9 x-3">
+          <div className="col-lg-10 x-3">
             {props.cart.find((e) => e.productId === product._id) ? (
               <button
                 className="btn btn-primary w-100"

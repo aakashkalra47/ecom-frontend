@@ -16,7 +16,7 @@ const OrderList = (props) => {
         <div
           style={{
             padding: "1rem",
-            width: "50%",
+            width: "70%",
             border: "1px solid #d5ded7",
             borderRadius: "0.4rem",
           }}

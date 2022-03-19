@@ -10,10 +10,10 @@
     display: flex;
     justify-content: center;
     padding: 40px;
-    border-radius: 5px;
-    box-shadow: 2px;
+    border-radius: 0px;
     border: 1px solid $primary;
     display: flex;
+    box-shadow:10px 10px 5px rgba(black,0.2);
 }
 .input-field{
     margin: 20px;

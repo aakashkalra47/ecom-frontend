@@ -15,11 +15,6 @@
 @import "../../../node_modules/bootstrap/scss/bootstrap-utilities.scss";
 
 
-
-
-
-
-
 a:hover {
   color: white !important;
 }
@@ -36,4 +31,6 @@ $accordion-button-focus-box-shadow: none;
 @import "product.scss";
 @import "form.scss";
 @import "utilities.scss";
-@import "image_modal.scss"
+@import "image_modal.scss";
+@import "spinner.scss";
+@import "footer.scss";

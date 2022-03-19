@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { Field, Form } from "react-final-form";
 import { useHistory } from "react-router-dom";
-import "../../styles/index.css";
 import { addAddress } from "../../actions/addressActions";
 import { validateField } from "../../utils/validation";
 import { makeStyles } from "@material-ui/core/styles";

@@ -1,16 +1,16 @@
 import axios from "axios";
 let url = process.env.REACT_APP_API;
-const axiosConfing={
+const axiosConfing=()=>({
   headers:{
     authorization:localStorage.getItem('authorization')
   }
-}
+})
 export const getAddresses = () => async (dispatch) => {
   try{
     const response = await axios({
       url: url + "/address",
       method: "GET",
-      ...axiosConfing
+      ...axiosConfing()
     });
     if (response.data.result) {
       dispatch({
@@ -31,7 +31,7 @@ export const addAddress = (data,callback) => async (dispatch) => {
       url: url + "/address",
       method: "POST",
       data,
-      ...axiosConfing
+      ...axiosConfing()
     });
     if (response.data.result) {
       dispatch({
@@ -53,7 +53,7 @@ export const removeAddress = (addressId) => async (dispatch) => {
     data:{
         addressId
     },
-    ...axiosConfing
+    ...axiosConfing()
   });
   if (response.data) {
     dispatch({

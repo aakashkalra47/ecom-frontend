@@ -1,10 +1,11 @@
 #myImg {
   cursor: pointer;
   transition: 0.3s;
-}
-#myImg:hover {
+  &:hover{
   opacity: 0.9;
+  }
 }
+
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */

@@ -9,11 +9,10 @@ import {
 } from "@material-ui/core";
 import { Field, Form } from "react-final-form";
 import { Link, useHistory } from "react-router-dom";
-import "../../styles/index.css";
 import { login } from "../../actions/authActions";
 import { connect } from "react-redux";
 import { validateEmail, validatePassword } from "../../utils/validation";
-import variables from '../../styles/sass/_variables.module.scss';
+import variables from "../../styles/sass/_variables.module.scss";
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -57,8 +56,13 @@ function Login(props) {
               autoComplete="off"
               onSubmit={handleSubmit}
             >
-              <h4 className="text-primary" style={{ textAlign: "center", width: "100%" }}>Ecom Login</h4>
-              <Field name="email" validate={validateEmail}>
+              <h4
+                className="text-primary"
+                style={{ textAlign: "center", width: "100%" }}
+              >
+                Fashioncart Login
+              </h4>
+              <Field id ="email" name="email" validate={validateEmail}>
                 {({ input, meta }) => (
                   <div className="input-field">
                     <TextField
@@ -90,7 +94,11 @@ function Login(props) {
                   </div>
                 )}
               </Field>
-              <Field name="showPassword" type="checkbox" className="text-primary">
+              <Field
+                name="showPassword"
+                type="checkbox"
+                className="text-primary"
+              >
                 {({ input, meta }) => (
                   <div
                     style={{
@@ -114,12 +122,21 @@ function Login(props) {
                   </div>
                 )}
               </Field>
-              <Button variant="contained" style={{backgroundColor:variables.primary,color:'white'}} type="submit">
+              <Button
+                variant="contained"
+                style={{ backgroundColor: variables.primary, color: "white" }}
+                className="w-100"
+                type="submit"
+              >
                 Login
               </Button>
               <div>
                 <Typography>Need an Account?</Typography>
-                <MuiLink to="/signup" component={Link} className="text-primary link">
+                <MuiLink
+                  to="/signup"
+                  component={Link}
+                  className="text-primary link"
+                >
                   Sign Up
                 </MuiLink>
               </div>
