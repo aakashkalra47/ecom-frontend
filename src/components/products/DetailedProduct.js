@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getProductById } from "../../actions/productsActions";
 import { addItemToCart } from "../../actions/cartActions";
 import _ from "lodash";
@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 function DetailedProduct(props) {
   const params = useParams();
   const [product, setProduct] = useState({});
-  const history = useHistory();
+  const navigate = useNavigate();
   useEffect(() => {
     getProductById(params.id).then((res) => {
       setProduct(res.data.result);
@@ -34,18 +34,18 @@ function DetailedProduct(props) {
     if (localStorage.getItem("authorization")) {
       props.dispatch(
         addWishListItem(product._id, () => {
-          history.push("/login");
+          navigate("/login");
         })
       );
     } else {
-      history.push("/login");
+      navigate("/login");
     }
   };
   const removeItemFromWishlist = async () => {
     if (localStorage.getItem("authorization")) {
       props.dispatch(removeWishListItem(product._id));
     } else {
-      history.push("/login");
+      navigate("/login");
     }
   };
   const [selectedSize, setSelectedSize] = React.useState("");
@@ -60,12 +60,12 @@ function DetailedProduct(props) {
               size: selectedSize,
             },
             () => {
-              history.push("/login");
+              navigate("/login");
             }
           )
         );
       } else {
-        history.push("/login");
+        navigate("/login");
       }
     } else {
       SetError("Please Select Size");
@@ -181,7 +181,7 @@ function DetailedProduct(props) {
                 className="btn btn-primary w-100"
                 style={{ color: "white" }}
                 onClick={() => {
-                  history.push("/user/cart");
+                  navigate("/user/cart");
                 }}
               >
                 Go To Cart

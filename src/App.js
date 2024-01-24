@@ -1,5 +1,5 @@
 import { Provider } from "react-redux";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/Signup/Signup";
 import Navbar from "./components/Navbar/Navbar2";
@@ -20,6 +20,15 @@ import { getWishListItems } from "./actions/wishlistActions";
 import { getCartItems } from "./actions/cartActions";
 import OrderList from "./components/Order/orderList";
 import Footer from "./components/Footer";
+import { createTheme ,ThemeProvider} from "@mui/material";
+import palette from './styles/sass/_variables.module.scss' 
+const theme=createTheme({
+  palette:{
+    primary:{
+      main: palette.primary,
+    }
+  }
+})
 function App() {
   useEffect(() => {
     if (localStorage.getItem("authorization")) {
@@ -29,27 +38,31 @@ function App() {
     }
   }, []);
   return (
-    <Provider store={store}>
-      <Router>
-        <div style={{ fontFamily: "Arial,sans-serif",position:'relative',minHeight:'100vh',display:'flex',flexDirection:'column',justifyContent:'space-between' }}>
-          <Navbar />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signup" component={SignUp} />
-            <Route exact path="/product/:id" component={ProductDetail} />
-            <Route exact path="/user/wishlist" component={Wishlist} />
-            <Route exact path="/user/cart" component={Cart} />
-            <Route exact path="/user/orders" component={OrderList} />
-            <Route exact path="/order" component={AddressList} />
-            <Route exact path="/address/add" component={AddressForm} />
-            <Route exact path="/payment" component={Payment} />
-            <Route exact path="/:category" component={Products} />
-          </Switch>
-          <Footer/>
-        </div>
-      </Router>
-    </Provider>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <Router>
+          <div style={{ fontFamily: "Arial,sans-serif",minHeight:'100vh',display:'flex',flexDirection:'column' }}>
+            <Navbar/>
+            <div className="flex-grow-1 d-flex flex-column">
+              <Routes>
+                <Route exact path="/" element={<Home/>} />
+                <Route exact path="/login" element={<Login/>} />
+                <Route exact path="/signup" element={<SignUp/>} />
+                <Route exact path="/product/:id" element={<ProductDetail/>} />
+                <Route exact path="/user/wishlist" element={<Wishlist/>} />
+                <Route exact path="/user/cart" element={<Cart/>} />
+                <Route exact path="/user/orders" element={<OrderList/>} />
+                <Route exact path="/order" element={<AddressList/>} />
+                <Route exact path="/address/add" element={<AddressForm/>} />
+                <Route exact path="/payment" element={<Payment/>} />
+                <Route exact path="/:category" element={<Products/>} />
+              </Routes>
+            </div>
+            <Footer/>
+          </div>
+        </Router>
+      </Provider>
+    </ThemeProvider>
   );
 }
 

@@ -1,19 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
-import {BrowserRouter} from 'react-router-dom';
 import {placeOrder,emptyCurrentOrder} from '../actions/orderActions';
 import {clearCart} from '../actions/cartActions';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Payment(props) {
-  const history = useHistory();
+  const navigate = useNavigate();
   const orderDetails=props.order;
   orderDetails.items=props.cart;
   const order=()=>{
     props.dispatch(placeOrder(orderDetails,(data)=>{
       props.dispatch(emptyCurrentOrder());
       props.dispatch(clearCart());
-      history.replace('/user/orders');
+      navigate('/user/orders',{replace:true});
     }));
   }
   return (

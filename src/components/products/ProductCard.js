@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   addWishListItem,
@@ -7,26 +7,26 @@ import {
 } from "../../actions/wishlistActions";
 function Card(props) {
   const { name, price, _id,images } = props.data;
-  const history = useHistory();
+  const navigate = useNavigate();
   const openProductDetails = () => {
-    history.push(`/product/${_id}`);
+    navigate(`/product/${_id}`);
   };
   const addItemToWishList = async () => {
     if (localStorage.getItem("authorization")) {
       props.dispatch(
         addWishListItem(_id, () => {
-          history.push("/login");
+          navigate("/login");
         })
       );
     } else {
-      history.push("/login");
+      navigate("/login");
     }
   };
   const removeItemFromWishlist = async () => {
     if (localStorage.getItem("authorization")) {
       props.dispatch(removeWishListItem(_id));
     } else {
-      history.push("/login");
+      navigate("/login");
     }
   };
   return (

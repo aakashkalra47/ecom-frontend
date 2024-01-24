@@ -1,30 +1,30 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Field, Form } from "react-final-form";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { addAddress } from "../../actions/addressActions";
 import { validateField } from "../../utils/validation";
-import { makeStyles } from "@material-ui/core/styles";
-import { TextField } from "@material-ui/core";
+// import { makeStyles } from "@mui/styles/makeStyles";
+import { TextField } from "@mui/material";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: "25ch",
-    },
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     "& > *": {
+//       margin: theme.spacing(1),
+//       width: "25ch",
+//     },
+//   },
+// }));
 
 function AddressForm(props) {
-  const classes = useStyles();
-  const history = useHistory();
+  // const classes = useStyles();
+  const navigate = useNavigate();
 
   const handleSubmit = async (values) => {
     try {
       props.dispatch(
         addAddress(values, () => {
-          history.push("/order");
+          navigate("/order");
         })
       );
     } catch (e) {
@@ -42,7 +42,7 @@ function AddressForm(props) {
           onSubmit={handleSubmit}
           render={({ handleSubmit }) => (
             <form
-              className={classes.root}
+              // className={classes.root}
               noValidate
               style={{ display: "flex", flex: 1, flexDirection: "column" }}
               autoComplete="off"

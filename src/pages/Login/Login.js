@@ -1,37 +1,37 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+// import { makeStyles } from "@mui/styles/makeStyles";
 import {
   Checkbox,
   TextField,
   Button,
   Typography,
   Link as MuiLink,
-} from "@material-ui/core";
+} from "@mui/material";
 import { Field, Form } from "react-final-form";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../actions/authActions";
 import { connect } from "react-redux";
 import { validateEmail, validatePassword } from "../../utils/validation";
 import variables from "../../styles/sass/_variables.module.scss";
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: "25ch",
-    },
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     "& > *": {
+//       margin: theme.spacing(1),
+//       width: "25ch",
+//     },
+//   },
+// }));
 
 function Login(props) {
-  const classes = useStyles();
-  const history = useHistory();
+  // const classes = useStyles();
+  const navigate = useNavigate();
   const [passwordType, setPasswordType] = React.useState("password");
 
   const handleSubmit = async (values) => {
     try {
       props.dispatch(
         login(values, () => {
-          history.push("/");
+          navigate("/");
         })
       );
     } catch (e) {
@@ -50,7 +50,7 @@ function Login(props) {
           onSubmit={handleSubmit}
           render={({ handleSubmit }) => (
             <form
-              className={classes.root}
+              // className={classes.root}
               noValidate
               style={{ display: "flex", flexDirection: "column" }}
               autoComplete="off"

@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {setOrderAmount} from '../../actions/orderActions';
 function  CartDetails(props) {
-  const history=useHistory();
+  const navigate=useNavigate();
   return (
     <div className="container mt-5 mx-3">
       <table class="table">
@@ -29,7 +29,7 @@ function  CartDetails(props) {
       </table>
       <button className="btn btn-primary w-100" style={{color:'white'}} onClick={()=>{
         props.dispatch(setOrderAmount(props.amount + props.shipping));
-        history.push('/order')
+        navigate('/order')
       }}>Place Order</button>
     </div>
   );
