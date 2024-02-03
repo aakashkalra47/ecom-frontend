@@ -1,38 +1,39 @@
-import React from "react";
-import { connect } from "react-redux";
-import {placeOrder,emptyCurrentOrder} from '../actions/orderActions';
-import {clearCart} from '../actions/cartActions';
-import { useNavigate } from 'react-router-dom';
+import React from 'react'
+import { connect, useDispatch } from 'react-redux'
+import { placeOrder, emptyCurrentOrder } from '../actions/orderActions'
+import { clearCart } from '../actions/cartActions'
+import { useNavigate } from 'react-router-dom'
 
-function Payment(props) {
-  const navigate = useNavigate();
-  const orderDetails=props.order;
-  orderDetails.items=props.cart;
-  const order=()=>{
-    props.dispatch(placeOrder(orderDetails,(data)=>{
-      props.dispatch(emptyCurrentOrder());
-      props.dispatch(clearCart());
-      navigate('/user/orders',{replace:true});
-    }));
+const Payment = (props) => {
+  const navigate = useNavigate()
+  const orderDetails = props.order
+  orderDetails.items = props.cart
+  const dispatch = useDispatch()
+  const order = () => {
+    dispatch(placeOrder(orderDetails, (data) => {
+      dispatch(emptyCurrentOrder())
+      dispatch(clearCart())
+      navigate('/user/orders', { replace: true })
+    }))
   }
   return (
     <div className="container">
       <div className="my-3">
         <h3>Total Amount : {orderDetails.amount}</h3>
       </div>
-      <table class="table">
+      <table className="table">
         <tbody>
           <tr>
             <th scope="row">
-              <div class="form-check">
+              <div className="form-check">
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="radio"
                   name="paymentMethod"
                   id="paymentMethod"
                   checked
                 />
-                <label class="form-check-label" for="paymentMethod">
+                <label className="form-check-label" htmlFor="paymentMethod">
                   Cash On Delivery
                 </label>
               </div>
@@ -40,15 +41,15 @@ function Payment(props) {
           </tr>
           <tr>
             <th scope="row">
-              <div class="form-check">
+              <div className="form-check">
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="radio"
                   name="paymentMethod"
                   id="paymentMethod1"
                   disabled
                 />
-                <label class="form-check-label" for="paymentMethod1">
+                <label className="form-check-label" htmlFor="paymentMethod1">
                   Card
                 </label>
               </div>
@@ -61,6 +62,6 @@ function Payment(props) {
         <button className="btn btn-primary text-white" onClick={order}>Confirm</button>
       </div>
     </div>
-  );
+  )
 }
-export default connect((state) => ({ cart: state.cart,order:state.order.current_order }))(Payment);
+export default connect((state) => ({ cart: state.cart, order: state.order.current_order }))(Payment)

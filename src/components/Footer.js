@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 const Footer = () => {
   return (
     <footer className="footer">
@@ -6,11 +6,11 @@ const Footer = () => {
         <span>Contact Us</span>
       </div>
       <div className="link-container">
-          <a className="footer-link">Facebook</a>
-          <a className="footer-link">Instagram</a>
-          <a className="footer-link">Twitter</a>
+        <a className="footer-link">Facebook</a>
+        <a className="footer-link">Instagram</a>
+        <a className="footer-link">Twitter</a>
       </div>
     </footer>
-  );
-};
-export default Footer;
+  )
+}
+export default Footer

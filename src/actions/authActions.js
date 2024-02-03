@@ -1,46 +1,47 @@
-import axios from "axios";
-let url = process.env.REACT_APP_API;
+import axios from 'axios'
+let url = process.env.REACT_APP_API; //eslint-disable-line
 export const login = (data, callback) => async (dispatch) => {
-  const response = await axios({
-    url: url + "/auth/login",
-    method: "POST",
-    data,
-  });
-  if (response.data) {
-    localStorage.setItem("authorization", response.data.result.token);
-    callback();
-    dispatch({
-      type: "SET_USER",
-      payload: response.data.result.user,
-    });
+  const res = await axios({
+    url: url + '/auth/login',
+    method: 'POST',
+    data
+  })
+  const { result } = res.data
+  if (result.token) {
+    await localStorage.setItem('authorization', result.token)
   }
-};
+  callback()
+  dispatch({
+    type: 'SET_USER',
+    payload: res.data.result.user
+  })
+}
 export const signup = (data, callback) => async (dispatch) => {
-  const response = await axios({
-    url: url + "/auth/signup",
-    method: "POST",
-    data,
-  });
-  if (response.data) {
-    callback();
+  const res = await axios({
+    url: url + '/auth/signup',
+    method: 'POST',
+    data
+  })
+  if (res.data) {
+    callback()
     dispatch({
-      type: "SET_USER",
-      payload: response.data.result,
-    });
+      type: 'SET_USER',
+      payload: res.data.result
+    })
   }
-};
+}
 export const getUser = () => async (dispatch) => {
-  const response = await axios({
-    url: url + "/auth/user",
-    method: "GET",
+  const res = await axios({
+    url: url + '/auth/user',
+    method: 'GET',
     headers: {
-        authorization: localStorage.getItem("authorization"),
-    },
-  });
-  if (response.data) {
+      authorization: localStorage.getItem('authorization')
+    }
+  })
+  if (res.data) {
     dispatch({
-      type: "SET_USER",
-      payload: response.data.result,
-    });
+      type: 'SET_USER',
+      payload: res.data.result
+    })
   }
-};
+}

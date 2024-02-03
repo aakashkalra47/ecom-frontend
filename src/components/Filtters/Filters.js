@@ -1,10 +1,10 @@
-import React from "react";
-export default function Filters(props) {
-    const [sizes,setSizes]=React.useState(['S','M','L','XL']);
-    const [categories,setCategories]=React.useState(['1','2','3']);
+import React from 'react'
+const Filters = () => {
+  const sizes = ['S', 'M', 'L', 'XL']
+  const categories = ['1', '2', '3']
   return (
     <div className="accordion" id="accordionPanelsStayOpenExample">
-        <h3>Filters</h3>
+      <h3>Filters</h3>
       <div className="accordion-item">
         <h2 className="accordion-header" id="panelsStayOpen-headingOne">
           <button
@@ -25,7 +25,7 @@ export default function Filters(props) {
         >
           <div className="accordion-body">
             <ul className="filter-list">
-              {sizes.map(e=>(<li className="filter-list-item">{e}</li>))}     
+              {sizes.map(e => (<li key={e} className="filter-list-item">{e}</li>))}
             </ul>
           </div>
         </div>
@@ -49,12 +49,13 @@ export default function Filters(props) {
           aria-labelledby="panelsStayOpen-headingTwo"
         >
           <div className="accordion-body">
-          <ul className="filter-list">
-              {categories.map(e=>(<li className="filter-list-item">{e}</li>))}     
+            <ul className="filter-list">
+              {categories.map(e => (<li key={e} className="filter-list-item">{e}</li>))}
             </ul>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
+export default Filters

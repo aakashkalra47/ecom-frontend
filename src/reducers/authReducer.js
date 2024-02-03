@@ -1,9 +1,10 @@
-const authReducer=(state={},action)=>{
-    switch(action.type){
-        case 'SET_USER':
-            return {...state,user:action.payload};
-        default:
-            return state;
+import { createSlice } from '@reduxjs/toolkit'
+export default createSlice({
+  name: 'auth',
+  initialState: {},
+  reducers: {
+    setUser (state, { payload }) {
+      state.user = payload
     }
-}
-export default authReducer;
+  }
+})

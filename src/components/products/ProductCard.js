@@ -1,70 +1,64 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { connect } from "react-redux";
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Card, CardMedia, CardContent, Typography } from '@mui/material'
 import {
   addWishListItem,
-  removeWishListItem,
-} from "../../actions/wishlistActions";
-function Card(props) {
-  const { name, price, _id,images } = props.data;
-  const navigate = useNavigate();
+  removeWishListItem
+} from '../../actions/wishlistActions'
+function ProductCard ({ data }) {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { name, price, _id, images } = data
+  const { wishlist } = useSelector(({ wishlist }) => ({ wishlist }))
   const openProductDetails = () => {
-    navigate(`/product/${_id}`);
-  };
+    navigate(`/product/${_id}`)
+  }
   const addItemToWishList = async () => {
-    if (localStorage.getItem("authorization")) {
-      props.dispatch(
+    if (localStorage.getItem('authorization')) {
+      dispatch(
         addWishListItem(_id, () => {
-          navigate("/login");
+          navigate('/login')
         })
-      );
+      )
     } else {
-      navigate("/login");
+      navigate('/login')
     }
-  };
+  }
   const removeItemFromWishlist = async () => {
-    if (localStorage.getItem("authorization")) {
-      props.dispatch(removeWishListItem(_id));
-    } else {
-      navigate("/login");
-    }
-  };
+    dispatch(removeWishListItem(_id))
+  }
   return (
-    <div className="col-lg-3 p-1 my-0">
-      <div className="product__card">
-        <div className="card-body pos-relative" >
-          <div
-            className="icon-2"
-          >
-            {props.wishlist?.find((e) => e === _id) ? (
+    <div className="col-lg-3 px-4 py-2 pos-relative">
+      <div className="icon-2">
+        {
+          wishlist?.find((e) => e === _id)
+            ? (
               <i
                 className="fas fa-heart text-parimary"
                 onClick={removeItemFromWishlist}
               />
-            ) : (
+              )
+            : (
               <i
                 className="far fa-heart text-primary"
                 onClick={addItemToWishList}
               />
-            )}
-          </div>
-          <img
-            onClick={openProductDetails}
-            src={images[0]||""}
-            className="card-img-top"
-            alt="..."
-          />
-          <h6 className="card-text my-3">{name} </h6>
-          <h6>
-            <b>₹</b> {price}
-          </h6>
-        </div>
+              )
+        }
       </div>
+      <Card variant='outlined' onClick={openProductDetails}>
+        <CardMedia
+          sx={{ height: 300 }}
+          image={images[0] || ''}
+          alt="..."
+        />
+        <CardContent>
+          <Typography variant='subtitle1' component="div">{name}</Typography>
+          <Typography variant='subtitle2'><b>₹</b> {price}</Typography>
+        </CardContent>
+      </Card>
     </div>
-  );
+  )
 }
-export default connect((state) => ({
-  user: state.auth.user,
-  wishlist: state.wishlist,
-  cart: state.cart,
-}))(Card);
+export default ProductCard

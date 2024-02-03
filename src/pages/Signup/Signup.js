@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react'
 // import { makeStyles } from "@mui/styles/makeStyles";
 import {
   Checkbox,
   TextField,
   Button,
   Typography,
-  Link as MuiLink,
-} from "@mui/material";
-import { Field, Form } from "react-final-form";
-import { Link, useNavigate } from "react-router-dom";
-import { signup } from "../../actions/authActions";
-import { connect } from "react-redux";
-import { validateEmail, validatePassword } from "../../utils/validation";
-import variables from "../../styles/sass/_variables.module.scss";
+  Link as MuiLink
+} from '@mui/material'
+import { Field, Form } from 'react-final-form'
+import { Link, useNavigate } from 'react-router-dom'
+import { signup } from '../../actions/authActions'
+import { connect, useDispatch } from 'react-redux'
+import { validateEmail, validatePassword } from '../../utils/validation'
+import variables from '../../styles/sass/_variables.module.scss'
 // const useStyles = makeStyles((theme) => ({
 //   root: {
 //     "& > *": {
@@ -22,29 +22,29 @@ import variables from "../../styles/sass/_variables.module.scss";
 //   },
 // }));
 
-function SignUp(props) {
+const SignUp = (props) => {
   // const classes = useStyles();
-  const navigate = useNavigate();
-  const [passwordType, setPasswordType] = React.useState("password");
-
+  const navigate = useNavigate()
+  const [passwordType, setPasswordType] = React.useState('password')
+  const dispatch = useDispatch()
   const validateUsername = (value) =>
-    value && value.length >= 4 ? undefined : "Username is too Short";
+    value && value.length >= 4 ? undefined : 'Username is too Short'
 
   const handleSubmit = async (values) => {
     try {
-      props.dispatch(
+      dispatch(
         signup(values, () => {
-          navigate("/");
+          navigate('/')
         })
-      );
+      )
     } catch (e) {
-      alert(e);
+      alert(e)
     }
-  };
+  }
 
   const changePasswordVisibility = (e) => {
-    setPasswordType(e.target.checked ? "text" : "password");
-  };
+    setPasswordType(e.target.checked ? 'text' : 'password')
+  }
 
   return (
     <div className="login-form-body">
@@ -55,15 +55,15 @@ function SignUp(props) {
             <form
               // className={classes.root}
               noValidate
-              style={{ display: "flex", flexDirection: "column" }}
+              style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}
               autoComplete="off"
               onSubmit={handleSubmit}
             >
               <h4
-                style={{ textAlign: "center", flex: 1, width: "100%" }}
+                style={{ textAlign: 'center', flex: 1, width: '100%' }}
                 className="text-primary"
               >
-                Fashioncart Sign Up
+                Fashionkart Sign Up
               </h4>
               <Field name="email" validate={validateEmail}>
                 {({ input, meta }) => (
@@ -75,7 +75,7 @@ function SignUp(props) {
                       label="Email"
                       variant="outlined"
                       error={meta.touched ? !!meta.error : false}
-                      helperText={meta.touched ? meta.error : ""}
+                      helperText={meta.touched ? meta.error : ''}
                     />
                   </div>
                 )}
@@ -85,12 +85,13 @@ function SignUp(props) {
                   <div className="input-field">
                     <TextField
                       {...input}
+                      style={{ flex: 1 }}
                       id="username-input"
                       label="Username"
                       name="name"
                       variant="outlined"
                       error={meta.touched ? !!meta.error : false}
-                      helperText={meta.touched ? meta.error : ""}
+                      helperText={meta.touched ? meta.error : ''}
                     />
                   </div>
                 )}
@@ -104,11 +105,12 @@ function SignUp(props) {
                   <div className="input-field">
                     <TextField
                       {...input}
+                      style={{ flex: 1 }}
                       id="password-input"
                       label="Password"
                       variant="outlined"
                       error={meta.touched ? !!meta.error : false}
-                      helperText={meta.touched ? meta.error : ""}
+                      helperText={meta.touched ? meta.error : ''}
                     />
                   </div>
                 )}
@@ -117,16 +119,16 @@ function SignUp(props) {
                 {({ input, meta }) => (
                   <div
                     style={{
-                      display: "flex",
-                      margin: "0px",
-                      alignItems: "center",
+                      display: 'flex',
+                      margin: '0px',
+                      alignItems: 'center'
                     }}
                   >
                     <Checkbox
                       {...input}
                       onChange={(e) => {
-                        input.onChange(e);
-                        changePasswordVisibility(e);
+                        input.onChange(e)
+                        changePasswordVisibility(e)
                       }}
                       id="outlined-basic"
                       variant="outlined"
@@ -139,7 +141,7 @@ function SignUp(props) {
               </Field>
               <Button
                 variant="contained"
-                style={{ backgroundColor: variables.primary, color: "white" }}
+                style={{ backgroundColor: variables.primary, color: 'white' }}
                 type="submit"
                 className="w-100"
               >
@@ -160,7 +162,7 @@ function SignUp(props) {
         />
       </div>
     </div>
-  );
+  )
 }
 
-export default connect()(SignUp);
+export default connect()(SignUp)

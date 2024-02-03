@@ -1,12 +1,12 @@
-import React from "react";
-import CartItem from "./CartItem";
-function CartItemsList(props) {
+import React from 'react'
+import CartItem from './CartItem'
+const CartItemsList = ({ cart }) => {
   return (
     <div className="container mt-5">
-      {props.cart?.map((e) => (
-        <CartItem key={e._id} item={e} size={e.size} product={e.product}/>
+      {cart?.map((e) => (
+        <CartItem key={e._id} item={e} size={e.size} product={e.product} />
       ))}
     </div>
-  );
+  )
 }
-export default CartItemsList;
+export default CartItemsList

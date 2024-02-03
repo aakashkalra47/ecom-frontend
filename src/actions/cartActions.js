@@ -1,87 +1,87 @@
-import axios from "axios";
-let url = process.env.REACT_APP_API;
-const axiosConfing = ()=>({
+import axios from 'axios'
+let url = process.env.REACT_APP_API; //eslint-disable-line
+const axiosConfing = () => ({
   headers: {
-    authorization: localStorage.getItem("authorization"),
-  },
-});
+    authorization: localStorage.getItem('authorization')
+  }
+})
 export const getCartItems = (data, callback) => async (dispatch) => {
   try {
     const response = await axios({
-      url: url + `/cart/`,
-      method: "GET",
+      url: url + '/cart/',
+      method: 'GET',
       ...axiosConfing(),
-      data,
-    });
+      data
+    })
     if (response.data) {
       dispatch({
-        type: "SET_CART_ITEMS",
-        payload: response.data.result,
-      });
+        type: 'SET_CART_ITEMS',
+        payload: response.data.result
+      })
     }
   } catch (e) {
     if (e.response.data.error && e.response.data.error.status === 401) {
-      callback();
+      callback()
     }
   }
-};
+}
 export const addItemToCart = (data, callback) => async (dispatch) => {
   try {
     const response = await axios({
-      url: url + `/cart/add/`,
-      method: "PUT",
+      url: url + '/cart/add/',
+      method: 'PUT',
       ...axiosConfing(),
-      data,
-    });
+      data
+    })
     if (response.data) {
       dispatch({
-        type: "ADD_CART_ITEM",
-        payload: response.data.result,
-      });
+        type: 'ADD_CART_ITEM',
+        payload: response.data.result
+      })
     }
   } catch (e) {
     if (e.response.data.error && e.response.data.error.status === 401) {
-      callback();
+      callback()
     }
   }
-};
+}
 export const removeItemFromCart = (id, size) => async (dispatch) => {
   const response = await axios({
-    url: url + `/cart/remove`,
-    method: "PUT",
+    url: url + '/cart/remove',
+    method: 'PUT',
     data: {
       size,
-      productId: id,
+      productId: id
     },
-    ...axiosConfing(),
-  });
+    ...axiosConfing()
+  })
   if (response.data) {
     dispatch({
-      type: "REMOVE_CART_ITEM",
-      payload: response.data.result,
-    });
+      type: 'REMOVE_CART_ITEM',
+      payload: response.data.result
+    })
   }
-};
+}
 export const moveToWishList = (id, size) => async (dispatch) => {
   const response = await axios({
-    url: url + `/cart/move`,
-    method: "PUT",
+    url: url + '/cart/move',
+    method: 'PUT',
     data: {
       size,
-      productId: id,
+      productId: id
     },
-    ...axiosConfing(),
-  });
+    ...axiosConfing()
+  })
   if (response.data) {
     dispatch({
-      type: "MOVE_TO_WISHLIST",
-      payload: response.data.result,
-    });
+      type: 'MOVE_TO_WISHLIST',
+      payload: response.data.result
+    })
   }
-};
+}
 export const clearCart = () => {
   return {
-    type: "CLEAR_CART",
-    payload: {},
-  };
-};
+    type: 'CLEAR_CART',
+    payload: {}
+  }
+}

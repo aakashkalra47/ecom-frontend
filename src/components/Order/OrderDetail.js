@@ -1,10 +1,9 @@
-import React from "react";
-const OrderDetail = (props) => {
-  const { order } = props;
+import React from 'react'
+const OrderDetail = ({ order }) => {
   return (
     <div>
       {order.items.map((e) => (
-        <div>
+        <div key={e.productId}>
           <h4>{e.productId.name}</h4>
           <h5>size-{e.size}</h5>
         </div>
@@ -12,6 +11,6 @@ const OrderDetail = (props) => {
       <div>Amount - {order.amount}</div>
       <div>Payment Mode - {order.paymentMode}</div>
     </div>
-  );
-};
-export default OrderDetail;
+  )
+}
+export default OrderDetail

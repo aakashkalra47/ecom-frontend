@@ -1,8 +1,8 @@
-import React from "react";
-import { connect } from "react-redux";
-import { removeItemFromCart, moveToWishList } from "../../actions/cartActions";
-function CartItem(props) {
-  const { size, product } = props;
+import React from 'react'
+import { connect } from 'react-redux'
+import { removeItemFromCart, moveToWishList } from '../../actions/cartActions'
+const CartItem = (props) => {
+  const { size, product } = props
   return (
     <div className="m-3 w-100 p-3">
       <div>
@@ -13,7 +13,7 @@ function CartItem(props) {
           <img
             src={
               (product.images && product.images[0]) ||
-              "https://i.picsum.photos/id/670/200/200.jpg?hmac=r8TCUI8W_ykYaZnXA3SXAoh2eXVWEefFjjZ2VsLJBXg"
+              'https://i.picsum.photos/id/670/200/200.jpg?hmac=r8TCUI8W_ykYaZnXA3SXAoh2eXVWEefFjjZ2VsLJBXg'
             }
             alt=".."
           />
@@ -27,9 +27,9 @@ function CartItem(props) {
         <div className="w-50">
           <button
             className="btn btn-primary w-100"
-            style={{ color: "white" }}
+            style={{ color: 'white' }}
             onClick={() => {
-              props.dispatch(moveToWishList(product._id, size));
+              props.dispatch(moveToWishList(product._id, size))
             }}
           >
             Move To Wishlist
@@ -38,9 +38,9 @@ function CartItem(props) {
         <div className="w-50">
           <button
             className="btn btn-primary w-100"
-            style={{ color: "white" }}
+            style={{ color: 'white' }}
             onClick={() => {
-              props.dispatch(removeItemFromCart(product._id, size));
+              props.dispatch(removeItemFromCart(product._id, size))
             }}
           >
             Remove
@@ -48,6 +48,6 @@ function CartItem(props) {
         </div>
       </div>
     </div>
-  );
+  )
 }
-export default connect()(CartItem);
+export default connect()(CartItem)

@@ -1,11 +1,11 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Field, Form } from "react-final-form";
-import { useNavigate } from "react-router-dom";
-import { addAddress } from "../../actions/addressActions";
-import { validateField } from "../../utils/validation";
+import React from 'react'
+import { connect } from 'react-redux'
+import { Field, Form } from 'react-final-form'
+import { useNavigate } from 'react-router-dom'
+import { addAddress } from '../../actions/addressActions'
+import { validateField } from '../../utils/validation'
 // import { makeStyles } from "@mui/styles/makeStyles";
-import { TextField } from "@mui/material";
+import { TextField } from '@mui/material'
 
 // const useStyles = makeStyles((theme) => ({
 //   root: {
@@ -16,41 +16,41 @@ import { TextField } from "@mui/material";
 //   },
 // }));
 
-function AddressForm(props) {
+const AddressForm = (props) => {
   // const classes = useStyles();
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleSubmit = async (values) => {
     try {
       props.dispatch(
         addAddress(values, () => {
-          navigate("/order");
+          navigate('/order')
         })
-      );
+      )
     } catch (e) {
-      alert(e);
+      alert(e)
     }
-  };
+  }
 
   return (
     <div
       className="my-1 "
-      style={{ flex: 1, display: "flex", justifyContent: "center" }}
+      style={{ flex: 1, display: 'flex', justifyContent: 'center' }}
     >
-      <div className="login-form mx-6" style={{ width: "40%" }}>
+      <div className="login-form mx-6" style={{ width: '40%' }}>
         <Form
           onSubmit={handleSubmit}
           render={({ handleSubmit }) => (
             <form
               // className={classes.root}
               noValidate
-              style={{ display: "flex", flex: 1, flexDirection: "column" }}
+              style={{ display: 'flex', flex: 1, flexDirection: 'column' }}
               autoComplete="off"
               onSubmit={handleSubmit}
             >
               <h4
                 className="text-primary my-6"
-                style={{ textAlign: "center", width: "100%" }}
+                style={{ textAlign: 'center', width: '100%' }}
               >
                 Address Form
               </h4>
@@ -64,7 +64,7 @@ function AddressForm(props) {
                       label="Address"
                       variant="outlined"
                       error={meta.touched ? !!meta.error : false}
-                      helperText={meta.touched ? meta.error : ""}
+                      helperText={meta.touched ? meta.error : ''}
                     />
                   </div>
                 )}
@@ -79,7 +79,7 @@ function AddressForm(props) {
                       label="Landmark"
                       variant="outlined"
                       error={meta.touched ? !!meta.error : false}
-                      helperText={meta.touched ? meta.error : ""}
+                      helperText={meta.touched ? meta.error : ''}
                     />
                   </div>
                 )}
@@ -94,7 +94,7 @@ function AddressForm(props) {
                       label="City"
                       variant="outlined"
                       error={meta.touched ? !!meta.error : false}
-                      helperText={meta.touched ? meta.error : ""}
+                      helperText={meta.touched ? meta.error : ''}
                     />
                   </div>
                 )}
@@ -110,7 +110,7 @@ function AddressForm(props) {
                       label="State"
                       variant="outlined"
                       error={meta.touched ? !!meta.error : false}
-                      helperText={meta.touched ? meta.error : ""}
+                      helperText={meta.touched ? meta.error : ''}
                     />
                   </div>
                 )}
@@ -126,13 +126,13 @@ function AddressForm(props) {
                       type="number"
                       variant="outlined"
                       error={meta.touched ? !!meta.error : false}
-                      helperText={meta.touched ? meta.error : ""}
+                      helperText={meta.touched ? meta.error : ''}
                     />
                   </div>
                 )}
               </Field>
               <button
-                variant="contained"
+                // variant="contained"
                 className="btn btn-primary w-100"
                 type="submit"
               >
@@ -143,6 +143,6 @@ function AddressForm(props) {
         />
       </div>
     </div>
-  );
+  )
 }
-export default connect()(AddressForm);
+export default connect()(AddressForm)

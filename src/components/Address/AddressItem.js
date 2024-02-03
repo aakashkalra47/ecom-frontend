@@ -1,7 +1,6 @@
-import React from "react";
-import { connect } from "react-redux";
-function AddressItem(props) {
-  const { data } = props;
+import React from 'react'
+import { connect } from 'react-redux'
+const AddressItem = ({ data }) => {
   return (
     <div>
       <p>{data.address} </p>
@@ -10,6 +9,6 @@ function AddressItem(props) {
       </p>
       <p>{data.pincode}</p>
     </div>
-  );
+  )
 }
-export default connect()(AddressItem);
+export default connect()(AddressItem)
